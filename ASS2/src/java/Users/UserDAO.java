@@ -58,7 +58,7 @@ public class UserDAO {
     }
     public List<UserDTO> searchUsers(String keyword) {
             List<UserDTO> userList = new ArrayList<>();
-            String sql = "SELECT * FROM Users WHERE role = 'user' AND "
+            String sql = "SELECT * FROM Users WHERE role = 'Khách hàng' AND "
                    + "(name LIKE ? OR email LIKE ? OR phone LIKE ? OR address LIKE ?)";
 
             try (Connection conn = DBUtils.getConnection();
@@ -92,7 +92,7 @@ public class UserDAO {
         List<UserDTO> userList = new ArrayList<>();
         int offset = (page - 1) * limit;
         
-        String sql = "SELECT * FROM Users WHERE role = 'user' ORDER BY user_id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        String sql = "SELECT * FROM Users WHERE role = 'Khách hàng' ORDER BY user_id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         
         try (Connection conn = DBUtils.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
