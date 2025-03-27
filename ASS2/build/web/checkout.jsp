@@ -101,10 +101,7 @@
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-column">
-            <h2>KẾT NỐI VỚI CHÚNG TÔI</h2>
-            <p>HELIOS Shop chuyên cung cấp trang sức cao cấp với mẫu mã độc đáo.</p>
-            <p>Hotline tư vấn: 0981.551.616</p>
-            <p>Email: support@helios.vn</p>
+            <p>© 2025 HELIOS - All rights reserved.</p>
         </div>
     </div>
 </footer>
