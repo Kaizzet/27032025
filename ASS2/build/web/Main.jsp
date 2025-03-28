@@ -96,7 +96,7 @@
                             ProductDTO product = new ProductDAO().getProductById(entry.getKey());
                             if (product != null) { %>
                     <div class="cart-item">
-                        <img src="<%= product.getImageUrl()%>" alt="<%= product.getName()%>">
+                        <img  src="<%= product.getImageUrl()%>" alt="<%= product.getName()%>">
                         <div class="cart-item-details">
                             <span><strong><%= product.getName()%></strong></span><br>
                             <span>Số lượng: <%= entry.getValue()%></span><br>
@@ -126,6 +126,7 @@
             <% if (products != null && !products.isEmpty()) {
                 for (ProductDTO p : products) { %>
             <div class="product">
+                <a href="MainController?action=productDetail&productId=<%= p.getProductId() %>">
                 <img src="<%= p.getImageUrl()%>" alt="<%= p.getName()%>">
                 <h3><%= p.getName()%></h3>
                 <p><strong><%= String.format("%,.0f", p.getPrice())%> VNĐ</strong></p>

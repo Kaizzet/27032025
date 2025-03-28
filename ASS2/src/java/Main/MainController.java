@@ -221,6 +221,36 @@ public class MainController extends HttpServlet {
                         request.getRequestDispatcher("Users.jsp").forward(request, response);
                     }
                     break;
+
+                case "productDetail": {
+                    // Lấy tham số productId (bạn có thể dùng tên "productId" hoặc "id" tùy vào cách truyền từ trang JSP)
+                    String productIdStr = request.getParameter("proid");
+                    ProductDTO pro= null; // Khai báo biến product bên ngoài try
+
+                    try {
+                        int proid = Integer.parseInt(productIdStr);
+                        // Sử dụng ProductDAO đã được khởi tạo từ đầu file (productDAO)
+                        product = productDAO.getProductById(proid);
+                    } catch (NumberFormatException e) {
+                        // Nếu không parse được productId thì forward đến trang lỗi
+                        request.setAttribute("errorMessage", "ID sản phẩm không hợp lệ.");
+                        request.getRequestDispatcher("error.jsp").forward(request, response);
+                        break;
+                    }
+
+                    if (product != null) {
+                        // Đưa đối tượng product vào request attribute để trang chi tiết có thể sử dụng
+                        request.setAttribute("pro", pro);
+                        // Chuyển tiếp sang trang chi tiết sản phẩm
+                        request.getRequestDispatcher("productDetail.jsp").forward(request, response);
+                    } else {
+                        // Nếu không tìm thấy sản phẩm, chuyển đến trang lỗi
+                        request.setAttribute("errorMessage", "Không tìm thấy sản phẩm.");
+                        request.getRequestDispatcher("error.jsp").forward(request, response);
+                    }
+                    break;
+                }
+
                 default:
                     request.getRequestDispatcher("Main.jsp").forward(request, response);
                     break;
