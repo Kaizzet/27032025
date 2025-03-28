@@ -12,14 +12,21 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GitHub/GIT/AssPRJ30128032025/ASS2/web/css/styles.css</file>
-            <file>file:/D:/GitHub/GIT/AssPRJ30128032025/ASS2/src/java/Main/MainController.java</file>
-            <file>file:/D:/GitHub/GIT/AssPRJ30128032025/ASS2/web/Main.jsp</file>
-            <file>file:/D:/GitHub/GIT/AssPRJ30128032025/ASS2/web/cart.jsp</file>
-            <file>file:/D:/GitHub/GIT/AssPRJ30128032025/ASS2/web/category.jsp</file>
-            <file>file:/D:/GitHub/GIT/AssPRJ30128032025/ASS2/web/search.jsp</file>
-            <file>file:/D:/GitHub/GIT/AssPRJ30128032025/ASS2/web/checkout.jsp</file>
-            <file>file:/D:/GitHub/GIT/AssPRJ30128032025/ASS2/web/css/thanhtoan.css</file>
+            <file>file:/D:/FPT%20University/subject/PRJ/git4/27032025/ASS2/web/css/styles.css</file>
+            <file>file:/D:/FPT%20University/subject/PRJ/git4/27032025/ASS2/web/css/motasanpham.css</file>
+            <file>file:/D:/FPT%20University/subject/PRJ/git4/27032025/ASS2/web/login.jsp</file>
+            <file>file:/D:/FPT%20University/subject/PRJ/git4/27032025/ASS2/web/cart.jsp</file>
+            <file>file:/D:/FPT%20University/subject/PRJ/git4/27032025/ASS2/web/css/thanhtoan.css</file>
+            <file>file:/D:/FPT%20University/subject/PRJ/git4/27032025/ASS2/src/java/utils/DBUtils.java</file>
+            <file>file:/D:/FPT%20University/subject/PRJ/git4/27032025/ASS2/src/java/Main/MainController.java</file>
+            <file>file:/D:/FPT%20University/subject/PRJ/git4/27032025/ASS2/web/forgotpassword.jsp</file>
+            <file>file:/D:/FPT%20University/subject/PRJ/git4/27032025/ASS2/web/category.jsp</file>
+            <file>file:/D:/FPT%20University/subject/PRJ/git4/27032025/ASS2/web/Usersadmin.jsp</file>
+            <file>file:/D:/FPT%20University/subject/PRJ/git4/27032025/ASS2/web/register.jsp</file>
+            <file>file:/D:/FPT%20University/subject/PRJ/git4/27032025/ASS2/web/checkout.jsp</file>
+            <file>file:/D:/FPT%20University/subject/PRJ/git4/27032025/ASS2/web/Main.jsp</file>
+            <file>file:/D:/FPT%20University/subject/PRJ/git4/27032025/ASS2/src/java/Users/UserDAO.java</file>
+            <file>file:/D:/FPT%20University/subject/PRJ/git4/27032025/ASS2/web/motasanpham.jsp</file>
         </group>
     </open-files>
 </project-private>

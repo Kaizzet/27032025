@@ -15,24 +15,9 @@
     <!-- HEADER -->
     <header class="header">
         <div class="logo">𝓗𝓔𝓛𝓘𝓞𝓢</div>
-        <nav>
+        <nav class="main-nav">
             <ul>
-                <li class="dropdown">
-                    <a href="#">MENU</a>
-                    <ul class="dropdown-content">
-                        <% if (categories != null && !categories.isEmpty()) {
-                            for (CategoryDTO category : categories) { %>
-                        <li>
-                            <a href="MainController?action=loadCategory&category=<%= category.getCategoryId()%>&page=1">
-                                <%= category.getCategoryName()%>
-                            </a>
-                        </li>
-                        <%  }
-                        } else { %>
-                        <li><a href="#">Không có danh mục</a></li>
-                        <% }%>
-                    </ul>
-                </li>
+                <li><a href="MainController?action=loadProducts&page=1">MENU</a></li>
             </ul>
         </nav> 
     </header>
