@@ -22,12 +22,14 @@ public class MainController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // Lấy action từ request
         String action = request.getParameter("action");
         if (action == null || action.isEmpty()) {
             response.sendRedirect("MainController?action=loadProducts&page=1");
             return;
         }
         
+        // Khởi tạo DAO và session
         ProductDAO productDAO = new ProductDAO();
         OrderDAO orderDAO = new OrderDAO();
         UserDAO userDAO = new UserDAO();
@@ -89,32 +91,38 @@ public class MainController extends HttpServlet {
                     break;
                 }
                 case "loadProducts": {
-                    int page = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
+                    int page = request.getParameter("page") != null 
+                            ? Integer.parseInt(request.getParameter("page")) : 1;
                     int productsPerPage = 12;
                     List<ProductDTO> products = productDAO.getProductsByPage(page, productsPerPage);
                     int totalProducts = productDAO.getTotalProducts();
                     int totalPages = (int) Math.ceil((double) totalProducts / productsPerPage);
                     List<CategoryDTO> categories = new CategoryDAO().getAllCategories();
+                    
                     request.setAttribute("products", products);
                     request.setAttribute("categories", categories);
                     request.setAttribute("currentPage", page);
                     request.setAttribute("totalPages", totalPages);
+                    
                     request.getRequestDispatcher("Main.jsp").forward(request, response);
                     break;
                 }
                 case "loadCategory": {
                     String categoryId = request.getParameter("category");
-                    int categoryPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
+                    int categoryPage = request.getParameter("page") != null 
+                            ? Integer.parseInt(request.getParameter("page")) : 1;
                     int productsPerPageCategory = 12;
                     List<ProductDTO> categoryProducts = productDAO.getProductsByCategoryAndPage(categoryId, categoryPage, productsPerPageCategory);
                     int totalProductsInCategory = productDAO.getTotalProductsByCategory(categoryId);
                     int totalPagesCategory = (int) Math.ceil((double) totalProductsInCategory / productsPerPageCategory);
                     List<CategoryDTO> allCategories = new CategoryDAO().getAllCategories();
+                    
                     request.setAttribute("products", categoryProducts);
                     request.setAttribute("categories", allCategories);
                     request.setAttribute("selectedCategory", categoryId);
                     request.setAttribute("currentPage", categoryPage);
                     request.setAttribute("totalPages", totalPagesCategory);
+                    
                     request.getRequestDispatcher("category.jsp").forward(request, response);
                     break;
                 }
@@ -157,7 +165,8 @@ public class MainController extends HttpServlet {
                     StringBuilder json = new StringBuilder("{");
                     if (cart != null && !cart.isEmpty()) {
                         for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
-                            json.append("\"").append(entry.getKey()).append("\":").append(entry.getValue()).append(",");
+                            json.append("\"").append(entry.getKey()).append("\":")
+                                .append(entry.getValue()).append(",");
                         }
                         json.deleteCharAt(json.length() - 1);
                     }
@@ -198,7 +207,7 @@ public class MainController extends HttpServlet {
                     break;
                 }
                 case "productDetail": {
-                    // Lấy tham số sản phẩm từ request (sử dụng tên "proid")
+                    // Lấy tham số "proid" từ request
                     String productIdStr = request.getParameter("proid");
                     ProductDTO pro = null;
                     try {
@@ -219,20 +228,20 @@ public class MainController extends HttpServlet {
                     break;
                 }
                 case "completeOrder": {
-                    // 1) Lấy thông tin từ form
+                    // Lấy thông tin giao hàng từ form
                     String address = request.getParameter("address");
                     String phone = request.getParameter("phone");
                     String email = request.getParameter("email");
-                    // 2) Lấy user đang đăng nhập
+                    // Lấy user đăng nhập
                     UserDTO loggedInUser = (UserDTO) session.getAttribute("loggedInUser");
-                    // 3) Lấy giỏ hàng
+                    // Lấy giỏ hàng từ session
                     HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
                     if (cart == null || cart.isEmpty()) {
                         request.setAttribute("errorMessage", "Giỏ hàng trống, không thể thanh toán!");
                         request.getRequestDispatcher("checkout.jsp").forward(request, response);
                         break;
                     }
-                    // 4) Tính tổng tiền
+                    // Tính tổng tiền
                     double totalPrice = 0;
                     ProductDAO prodDAO = new ProductDAO();
                     for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
@@ -241,8 +250,7 @@ public class MainController extends HttpServlet {
                             totalPrice += product.getPrice() * entry.getValue();
                         }
                     }
-                    // 5) Tạo đơn hàng và lưu vào DB
-                    // Sử dụng phương thức createOrder(int userId, HashMap<Integer,Integer> cart, double totalPrice, String shippingAddress)
+                    // Tạo đơn hàng và lưu vào DB sử dụng phương thức createOrder
                     int generatedOrderId = orderDAO.createOrder(
                             loggedInUser != null ? loggedInUser.getUserId() : 0,
                             cart,
@@ -250,6 +258,7 @@ public class MainController extends HttpServlet {
                             address
                     );
                     if (generatedOrderId > 0) {
+                        // Xoá giỏ hàng nếu đơn hàng thành công
                         session.removeAttribute("cart");
                         request.setAttribute("successMessage", "Thanh toán thành công! Mã đơn hàng: " + generatedOrderId);
                         request.getRequestDispatcher("checkout.jsp").forward(request, response);

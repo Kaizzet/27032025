@@ -18,9 +18,8 @@
             <ul>
                 <li><a href="MainController?action=loadProducts&page=1">MENU</a></li>
             </ul>
-        </nav> 
+        </nav>
     </header>
-
     <%
         // Lấy đối tượng sản phẩm từ request với attribute "pro"
         ProductDTO pro = (ProductDTO) request.getAttribute("pro");
@@ -30,7 +29,7 @@
     <%
         } else {
     %>
-    <!-- PHẦN GIỚI THIỆU SẢN PHẨM CHÍNH -->
+    <!-- Hiển thị chi tiết sản phẩm -->
     <section class="product-hero">
         <div class="product-image">
             <img src="<%= pro.getImageUrl() %>" alt="<%= pro.getName() %>">
@@ -50,15 +49,13 @@
             </p>
         </div>
     </section>
-
-    <!-- PHẦN ẢNH CHI TIẾT SẢN PHẨM -->
+    <!-- Hiển thị hình chi tiết sản phẩm -->
     <section class="product-detail-images">
         <img src="images/detail1.jpg" alt="Chi tiết sản phẩm 1">
         <img src="images/detail2.jpg" alt="Chi tiết sản phẩm 2">
         <img src="images/detail3.jpg" alt="Chi tiết sản phẩm 3">
     </section>
-
-    <!-- PHẦN THÔNG TIN THÊM -->
+    <!-- Thông tin thêm -->
     <section class="crafting-info">
         <h2>8 NĂM HÀNH TRÌNH CHẾ TÁC THỦ CÔNG BẠC</h2>
         <p>
@@ -67,8 +64,7 @@
         </p>
         <img src="images/detail3.jpg" alt="Nghệ nhân đang chế tác">
     </section>
-
-    <!-- PHẦN GỢI Ý SẢN PHẨM -->
+    <!-- Gợi ý sản phẩm -->
     <section class="recommend-section">
         <h2>You may also like</h2>
         <div class="recommend-container">
@@ -78,14 +74,11 @@
                 <p class="product-price">1.250.000 VND</p>
                 <button class="btn-quickview">Xem nhanh</button>
             </div>
-            <!-- Có thể thêm các sản phẩm gợi ý khác -->
         </div>
     </section>
     <%
-        } // end else
+        }
     %>
-
-    <!-- FOOTER -->
     <footer class="footer">
         <p>© 2025 HELIOS - All rights reserved.</p>
     </footer>
